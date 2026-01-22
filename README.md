@@ -1,27 +1,23 @@
 # 📡 Cloud-Based RFID Attendance System
 
-A cloud-connected, automated RFID attendance system using **ESP32, MQTT, Raspberry Pi, and Google Sheets** for real-time attendance tracking with high reliability and low human error.
+A secure, scalable, and cloud-connected RFID attendance system using **ESP32, MQTT, Raspberry Pi, and Google Sheets** for real-time attendance tracking.
 
 ---
 
 ## 📌 Project Overview
 
-Traditional attendance systems are:
-- ⏱️ Time-consuming  
-- ❌ Prone to human errors  
-- 📄 Difficult to manage and analyze  
-
-This project implements a **Cloud-Based RFID Attendance System** that automates attendance logging with real-time cloud synchronization using **MQTT and HTTP**.
+Traditional attendance systems are time-consuming and prone to human error.  
+This project implements an **automated RFID-based attendance system** with real-time cloud synchronization, local backup, and administrator control features.
 
 ---
 
 ## 🎯 Project Objectives
 
-- Automate student attendance using RFID  
-- Store attendance **locally and on the cloud**  
-- Enable **real-time data synchronization**  
-- Reduce human errors  
-- Provide **administrator configuration features**  
+- Automate student attendance using RFID technology  
+- Reduce human errors and manual effort  
+- Provide real-time attendance logging  
+- Support local and cloud data storage  
+- Enable administrator configuration and maintenance  
 
 ---
 
@@ -31,7 +27,7 @@ This project implements a **Cloud-Based RFID Attendance System** that automates 
 - RFID Reader (MFRC522)  
 - Raspberry Pi  
 - OLED Display  
-- LEDs & Buzzer  
+- LEDs and Buzzer  
 - Wi-Fi Network  
 
 ---
@@ -47,28 +43,6 @@ This project implements a **Cloud-Based RFID Attendance System** that automates 
 
 ---
 
-## 🧱 System Architecture
-
-### 🔹 Block Diagram
-
-```text
-ESP32 (RFID Reader)
-        |
-        | MQTT (Publish)
-        v
-Mosquitto MQTT Broker
-        |
-        | MQTT (Subscribe)
-        v
-Raspberry Pi
-        |
-        | HTTP
-        v
-Google Apps Script
-        |
-        v
-Google Sheets (Cloud Database)
-```
 ## 🧱 System Architecture
 
 ### 🔹 Block Diagram
@@ -91,7 +65,7 @@ Google Sheets (Cloud Database)
 4. Raspberry Pi subscribes and receives the UID  
 5. Attendance is stored in the local database  
 6. Data is sent to Google Sheets using HTTP  
-7. OLED display and LEDs provide user feedback  
+7. OLED display and LEDs provide visual feedback  
 
 ---
 
@@ -106,10 +80,69 @@ Google Sheets (Cloud Database)
 
 ### 👨‍💻 Administrator Mode
 
-- Access Point (AP) configuration mode  
-- Change Wi-Fi credentials  
-- Manage student records  
-- View system logs and system status  
+- Used for system configuration and maintenance  
+- Allows Wi-Fi configuration and student management  
+- Provides access to system logs and status  
+
+---
+
+## ⚙️ Configuration Mode (BOOT Button Method)
+
+This system supports a **Configuration Mode** that is activated using the **ESP32 BOOT button (GPIO 0)** during power-up.  
+This method is useful during **initial setup** or when **Wi-Fi credentials need to be updated**.
+
+---
+
+### 🔘 How to Enter Configuration Mode
+
+1. Power **OFF** the ESP32 device  
+2. **Press and HOLD** the **BOOT button**  
+3. While holding the button, **Power ON / Reset** the device  
+4. Keep holding for **2–3 seconds**  
+5. Release the button  
+
+➡️ The device will now start in **CONFIG MODE**
+
+---
+
+### 🧠 Configuration Mode Logic
+
+- BOOT button (GPIO 0) is checked during startup  
+- If the button is **LOW (pressed)** at boot time:
+  - Device enters **Configuration Mode**
+  - ESP32 starts in **Access Point (AP) mode**
+  - OLED displays the **Configuration Screen**
+- If the button is **not pressed**:
+  - Device starts in **Normal (Student) Mode**
+
+---
+
+### 📟 OLED Display – Config Mode
+
+When Configuration Mode is active, the OLED displays:
+- **CONFIG MODE**
+- **Access Point (AP) Name**
+- **Device IP Address**
+- Instructions to connect using a mobile or laptop
+
+![OLED Config Mode](images/oled_config_mode.jpg)
+![Access Point](images/Access_Point.jpg)
+
+---
+
+### 🌐 Configuration Features
+
+In Configuration Mode, the administrator can:
+- Configure **Wi-Fi SSID and Password**
+- Save credentials to ESP32 flash memory (NVS)
+- Restart the device after successful configuration
+
+---
+
+### 🔄 Exit Configuration Mode
+
+- Restart the device **without pressing** the BOOT button  
+- Device boots into **Student Mode** automatically  
 
 ---
 
@@ -124,13 +157,13 @@ Google Sheets (Cloud Database)
 
 - Google Sheets used as cloud database  
 - Time-stamped attendance logs  
-- Automatic cloud synchronization  
+- Automatic data synchronization  
 
 ### 🛠️ Admin Control Panel
 
 - Dynamic Wi-Fi configuration  
 - Student record management  
-- Backup & restore support  
+- Backup and restore support  
 
 ---
 
@@ -155,10 +188,20 @@ Google Sheets (Cloud Database)
 ## 🚀 Future Scope
 
 - Biometric authentication integration  
-- Mobile application for teachers & parents  
-- SMS & Email alert system  
+- Mobile application for teachers and parents  
+- SMS and Email alert system  
 - Advanced analytics dashboard  
 - Multi-device connectivity  
+
+---
+
+## 👥 Team Members
+
+**Group – 24**
+
+- Velagala Jayakanth Reddy (250850330076)  
+- Vinnakota Srinivas (250850330077)  
+- Yakkala Harsha Vardhana Raju (250850330078)  
 
 ---
 
@@ -173,7 +216,7 @@ Google Sheets (Cloud Database)
 ## 📜 Conclusion
 
 This project successfully demonstrates a **secure, scalable, and real-time RFID attendance system** using MQTT and cloud technologies.  
-The dual-database approach ensures data reliability, while admin controls enable easy system configuration and management.
+The dual-database architecture ensures data reliability, while administrator controls enable easy system configuration and maintenance.
 
 ---
 
