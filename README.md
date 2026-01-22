@@ -195,16 +195,6 @@ In Configuration Mode, the administrator can:
 
 ---
 
-## 👥 Team Members
-
-**Group – 24**
-
-- Velagala Jayakanth Reddy (250850330076)  
-- Vinnakota Srinivas (250850330077)  
-- Yakkala Harsha Vardhana Raju (250850330078)  
-
----
-
 ## 📸 Project Demo Images
 
 ![RFID Scan Demo](images/rfid_scan.jpg)  
